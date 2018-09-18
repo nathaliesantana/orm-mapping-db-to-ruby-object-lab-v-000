@@ -34,7 +34,7 @@ class Student
       WHERE grade < ?
     SQL
     # binding.pry
-    DB[:conn].execute(sql, 12).flatte
+    DB[:conn].execute(sql, 12).flatten
   end
 
   def self.find_by_name(name)
