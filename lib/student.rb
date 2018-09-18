@@ -34,7 +34,9 @@ class Student
       WHERE grade < ?
     SQL
     # binding.pry
-    DB[:conn].execute(sql, 12).flatten
+    DB[:conn].execute(sql, 12).map do |row|
+      self.new_from_db(row)
+    end
   end
 
   def self.find_by_name(name)
