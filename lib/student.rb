@@ -9,7 +9,7 @@ class Student
     SQL
     binding.pry
     DB[:conn].execute(sql).map do |student_info|
-      
+
       @id = student_info[0]
       @name = student_info[1]
       @grade= student_info[2]
