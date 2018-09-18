@@ -4,15 +4,10 @@ class Student
   attr_accessor :id, :name, :grade
 
   def self.new_from_db(row)
-    sql = <<-SQL
-    SELECT * FROM students
-    SQL
-    binding.pry
-    DB[:conn].execute(sql).map do |student_info|
-
-      @id = student_info[0]
-      @name = student_info[1]
-      @grade= student_info[2]
+    new_student = self.new 
+    new_student.id = row[0]
+    new_student.name =  row[1]
+    new_student.grade = row[2]
      end
 
   end
