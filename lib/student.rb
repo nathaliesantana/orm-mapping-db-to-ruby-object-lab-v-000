@@ -13,7 +13,7 @@ class Student
       @name = student_info[1]
       @grade= student_info[2]
      end
-    
+
   end
 
   def self.all
@@ -25,16 +25,16 @@ class Student
     # find the student in the database given a name
     # return a new instance of the Student class
   end
-  
+
   def save
     sql = <<-SQL
-      INSERT INTO students (name, grade) 
+      INSERT INTO students (name, grade)
       VALUES (?, ?)
     SQL
 
     DB[:conn].execute(sql, self.name, self.grade)
   end
-  
+
   def self.create_table
     sql = <<-SQL
     CREATE TABLE IF NOT EXISTS students (
