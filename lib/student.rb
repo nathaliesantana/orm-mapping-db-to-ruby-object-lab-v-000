@@ -22,16 +22,16 @@ class Student
       self.new_from_db(row)
     end.first
   end
-  
+
   def save
     sql = <<-SQL
     INSERT INTO students (name, grade)
     VALUES (?, ?)
     SQL
-    
+
     DB[:conn].execute(sql, self.name, self.grade)
   end
-  
+
   def self.create_table
     sql = <<-SQL
     CREATE TABLE IF NOT EXISTS students (
@@ -40,15 +40,15 @@ class Student
       grade TEXT
     )
     SQL
-    
+
     DB[:conn].execute(sql)
   end
-  
+
   def self.drop_table
     sql = "DROP TABLE IF EXISTS students"
     DB[:conn].execute(sql)
   end
-  
+
   def self.all
     sql = <<-SQL
       SELECT *
@@ -81,6 +81,15 @@ class Student
     end
   end
 
+  def self.first_X_students_in_grade_10
+    sql = <<-SQL
+      SELECT *
+      FROM students
+      WHERE grade = ?
+    SQL
+    binding.pry
+    DB[:conn].execute(sql, 12)
+  end
 
-  
+
 end
