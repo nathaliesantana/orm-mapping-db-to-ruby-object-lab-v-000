@@ -1,8 +1,18 @@
+requeri 'pry'
 class Student
   attr_accessor :id, :name, :grade
 
   def self.new_from_db(row)
-    # create a new Student object given a row from the database
+    sql = <<-SQL
+    SELECT * FROM students
+    SQL
+    DB[:con].execute(sql).map do |student_info|
+      binding.pry
+      @id = student_info[0]
+      @name = student_info[1]
+      @grade= student_info[2]
+     end
+    
   end
 
   def self.all
